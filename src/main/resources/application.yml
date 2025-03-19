@@ -1,0 +1,30 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/job_scheduler
+    username: postgres
+    password: Password123
+    pool:
+      initial-size: 5
+      max-size: 20
+  application:
+    name: reactive-job-scheduler
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG
+    com.job.scheduler: DEBUG
+    io.r2dbc.postgresql.QUERY: DEBUG
+    io.r2dbc.postgresql.PARAM: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
